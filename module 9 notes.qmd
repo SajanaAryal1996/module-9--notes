@@ -1,0 +1,64 @@
+---
+
+title: "modules 9 dotes"
+---
+# 
+
+attaching and detaching dataframe Make variables functionable Do not need to use \$ sign operator or double bracket function
+
+```{r}
+library (tidyverse)
+f <- "Country_Data_2016.csv"
+d <- read_csv(f, col_names = TRUE)
+names(d)
+attach(d)
+```
+
+```{r}
+ncol(d)
+nrow(d)
+```
+
+Keep data longer for tidy data
+
+```{r}
+length(d)
+num_countries <- nrow(d)
+num_countries
+```
+
+```{r}
+summary(d)
+```
+
+```{r}
+d$density <- d$population / d$area
+density
+```
+
+```{r}
+top_dense_countries <- d %>%
+  arrange(desc(density)) %>%
+  head(10)
+```
+
+```{r}
+bottom_dense_countries <- d %>%
+  arrange(density) %>%
+  head(10)
+```
+
+```{r}
+median(d$area, na.rm = TRUE)
+median(d$population, na.rm = TRUE)
+```
+
+```{r}
+c <- unique(d$country)
+glimpse(d)
+```
+
+```{r}
+d <- d |> mutate(density = population/area)
+d
+```
